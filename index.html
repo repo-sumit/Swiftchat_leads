@@ -1,477 +1,589 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Namo Lakshmi Saraswati School Payment Report Card : 2024 - 25</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;1000;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap');
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<style>
+        :root {
+            --font-family: 'Noto Sans Gujarati', sans-serif;
+            --header-border-color-top: #4fc3f7;
+            --header-border-color-bottom: #ffb74d;
+            --info-bg-color: #fff8e1;
+            --info-label-bg-color: #ffcc80;
+            --info-border-color: #ffb74d;
+            --section-title-bg-color: #1e88e5;
+            --table-header-bg-color: #e3f2fd;
+            --table-border-color: #90caf9;
+            --remarks-bg-color: #fffde7;
+            --remarks-border-color: #fff176;
+            --page-bg-color: #ffffff;
+            --text-color: #212121;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fafc;
+            font-family: var(--font-family);
+            font-size: 10px;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            color: var(--text-color);
         }
-        .report-card-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 10mm;
+            margin: 10mm auto;
+            background: var(--page-bg-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            page-break-after: always;
         }
-        .header-section {
+
+        /* --- HEADER --- */
+        .report-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--header-border-color-bottom);
+            position: relative;
         }
-        .header-text h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #2d3748;
+        .report-header::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            /* background-color: var(--header-border-color-top); */
         }
-        .header-text p {
-            font-size: 0.875rem;
-            color: #718096;
+
+        .header-logo img { height: 55px; }
+        .header-samagra-shiksha img { height: 55px; }
+
+        .header-title {
+            text-align: center;
+            color: #0d47a1;
         }
-        .school-info {
-            font-size: 0.875rem;
-            color: #4a5568;
-            background-color: #f9fafb;
-            padding: 1rem;
+        .header-title h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 75px;
+        }
+        .header-title p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            font-weight: bold;
+            padding-left: 75px;
+        }
+
+        /* --- STUDENT INFO --- */
+        .student-info-section {
+            background-color: var(--info-bg-color);
+            border: 1px solid var(--info-border-color);
+            padding: 8px;
             border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            
+            margin-bottom: 10px;
         }
-        .school-info span {
-            font-weight: 600;
-            color: #2d3748;
+        .student-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px 15px;
         }
-        .legend {
+        .info-item {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-            font-size: 0.875rem;
-            padding: 1rem;
-            background-color: #f9fafb;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid #e2e8f0;
+            font-size: 9.5px;
         }
-        .legend-item {
+        .info-label {
+            font-weight: bold;
+            background-color: var(--info-label-bg-color);
+            padding: 4px 8px;
+            border-radius: 4px 0 0 4px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--info-border-color);
+            border-right: none;
+        }
+        .info-value {
+            background-color: var(--page-bg-color);
+            padding: 4px 8px;
+            border-radius: 0 4px 4px 0;
+            border: 1px solid var(--info-border-color);
+            width: 100%;
             display: flex;
             align-items: center;
         }
-        .legend-code {
-            font-weight: 700;
-            margin-right: 0.25rem;
+
+        /* --- SUBJECT HEADER --- */
+        .subject-header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 10px;
         }
-        .legend-code-R { color: #ef4444; }
-        .legend-code-O { color: #f97316; }
-        .legend-code-Y { color: #f59e0b; }
-        .legend-code-B { color: #3b82f6; }
-        .legend-code-G { color: #10b981; }
-        .legend-code-P { color: #57565b; }
-        .table-container {
-            overflow-x: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .subject-info-item {
+            display: flex;
+            border: 1px solid #bdbdbd;
+            border-radius: 5px;
         }
-        table {
+        .subject-info-label {
+            font-weight: bold;
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+        }
+        .subject-info-value {
+            padding: 4px 8px;
+        }
+
+        /* --- TABLES --- */
+        .section-title {
+            background-color: var(--section-title-bg-color);
+            color: white;
+            text-align: center;
+            padding: 6px;
+            border-radius: 5px;
+            margin: 15px 0 10px 0;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .marks-table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 15px;
         }
-        th,
-        td {
-            padding: 0.75rem 1rem;
+        .marks-table th, .marks-table td {
+            border: 1px solid var(--table-border-color);
+            padding: 5px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.875rem;
+            font-size: 9.5px;
+            vertical-align: middle;
         }
-        thead th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .marks-table thead {
+            background-color: var(--table-header-bg-color);
         }
-        tbody tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-        tbody tr:hover {
-            background-color: #f1f5f9;
-        }
-        .student-name {
-            font-weight: 1000;
-            color: #1e293b;
-        }
-        .student-id {
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-        .status-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;font-weight: 600;
-            font-size: 0.75rem;
+        .marks-table th {
+            font-weight: bold;
             text-align: center;
         }
-        .status-A { background-color: #dbeafe; color: #1d4ed8; }.status-B { background-color: #d1fae5; color: #057a55; }.status-PP { background-color: #ede9fe; color: #6d28d9; }.status-R { background-color: #fee2e2; color: #b91c1c; }.status-P { background-color: #fef3c7; color: #b45309; }.status-NA { background-color: #fee2e2; color: #b91c1c; }.status-NR { background-color: #fed7aa; color: #c2410c; }.status-NA { background-color: #e5e7eb; color: #4b5563; }.total-amount {
-            font-weight: 700;
-            color: #047857;}
-        .class-header {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #374151;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #6366f1;}
-        .header-flex {
+        .marks-table td:nth-child(1),
+        .marks-table td:nth-child(3),
+        .marks-table td:nth-child(4),
+        .marks-table td:nth-child(5) {
+            text-align: center;
+        }
+        .marks-table td a {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+
+        /* --- REMARKS & FOOTER --- */
+        .remarks-section {
+            border: 1px solid var(--remarks-border-color);
+            padding: 5px 10px;
+            margin-bottom: 15px;
+            background-color: var(--remarks-bg-color);
+            border-radius: 5px;
+            font-size: 10.5px;
+        }
+        .remarks-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: var(--section-title-bg-color);
+        }
+        .remarks-section p strong {
+            color: #c62828;
+        }
+        .footer-section {
             display: flex;
             justify-content: space-between;
-            align-items: center;}
+            align-items: flex-end;
+            margin-top: 25px;
+            padding-top: 10px;
+            border-top: 1px dashed #bdbdbd;
+        }
+        .signature-block {
+            width: 50%;
+        }
+        .signature-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            font-size: 11px;
+        }
+        .signature-label {
+            white-space: nowrap;
+            padding-right: 10px;
+        }
+        .signature-line {
+            border-bottom: 1px dotted #000;
+            width: 100%;
+        }
+        .g-shala-section {
+            text-align: center;
+        }
+        .g-shala-section p {
+            margin: 0 0 5px 0;
+            font-size: 10px;
+        }
+        .g-shala-section img {
+            width: 75px;
+            height: 75px;
+        }
+
+        /* --- =================== --- */
+        /* --- SUMMARY PAGE STYLES --- */
+        /* --- =================== --- */
+        .summary-info-grid {
+             display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             gap: 5px 10px;
+        }
+        .health-info-section .section-title { background-color: #4dd0e1; }
+        .health-info-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #b2ebf2;
+            border-radius: 8px;
+        }
+        .bmi-gauge-container {
+            text-align: center;
+        }
+        .bmi-gauge {
+            width: 180px;
+            height: 90px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .bmi-gauge-base {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0.75turn, #ffcdd2 0%, #ffcdd2 20%, #fff9c4 20%, #fff9c4 60%, #c8e6c9 60%, #c8e6c9 90%, #e0e0e0 90%);
+            border-radius: 180px 180px 0 0;
+            position: absolute;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .bmi-gauge-cover {
+            width: 120px;
+            height: 60px;
+            background: var(--page-bg-color);
+            border-radius: 150px 150px 0 0;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        .bmi-needle {
+            width: 2px;
+            height: 85px;
+            background: #212121;
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(-56deg); /* Rotation for 17.9 BMI */
+            transition: transform 1.5s ease;
+        }
+        .bmi-needle-hub {
+            width: 10px;
+            height: 10px;
+            background: #424242;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .bmi-label {
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 11px;
+            background-color: #f1f8e9;
+            border: 1px solid #dcedc8;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        .health-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .health-item .info-label {
+            justify-content: center;
+            border-radius: 4px;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+            padding: 5px;
+        }
+        .health-item .info-value {
+            justify-content: center;
+            font-size: 12px;
+            padding: 6px;
+            font-weight: bold;
+            background: transparent;
+            border: none;
+        }
+        .health-item { flex-direction: column; background-color: #f1f8ff; border-radius: 4px; border: 1px solid #bbdefb; }
+        
+        .results-section .section-title { background-color: #4db6ac; }
+        .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 10px;}
+        .summary-table th, .summary-table td { border: 1px solid #a7ffeb; padding: 6px; text-align: center; }
+        .summary-table thead { background-color: #b2dfdb; }
+        .summary-table th { font-size: 10px; }
+        .summary-table td { font-size: 11px; }
+        .summary-table .final-score { font-weight: bold; background-color: #e0f2f1; }
+        .final-summary-text {
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 8px;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+        }
+
+        .attendance-section .section-title { background-color: #7986cb; }
+        .attendance-chart-container {
+            width: 100%;
+            padding: 22px 10px 22px 10px;
+            box-sizing: border-box;
+            border: 1px solid #c5cae9;
+            border-radius: 8px;
+        }
+        .attendance-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 120px;
+            position: relative;
+        }
+        .attendance-chart-bg-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+        }
+        .attendance-chart-bg-lines > div {
+            border-top: 1px dashed #e8eaf6;
+        }
+        .bar {
+            width: 12%;
+            background-color: #9fa8da;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease-out;
+        }
+        .bar-label-top {
+            position: absolute;
+            top: -18px;
+            width: 100%;
+            left: 0;
+            font-size: 9px;
+            font-weight: bold;
+            color: #3f51b5;
+        }
+        .bar-label-bottom {
+            position: absolute;
+            bottom: -18px;
+            width: 100%;
+            left: 0;
+            font-size: 9px;
+        }
+        .bar.avg-bar { background-color: #ffb74d; }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body { background: none; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                padding: 15mm;
+            }
+        }
 
     </style>
 </head>
-<body class="bg-gray-50">
-<div class="report-card-container">
-<header class="header-section">
-<div class="header-text">
-<h1>Namo Saraswati School Payment Report Card 2024-25</h1>
-<p>Empowering Girls, Supporting Education, Shaping Futures</p>
-<div class="school-info row ">
-<div class="col-7">
-<p><span>School Name:</span> Kadod High School</p>
-<p><span>Principal Name:</span> Rameshbhai Patel</p>
-<p><span>School Type:</span> Senior Secondary</p>
-<p><span>School Address:</span> Bardoli, Surat, Gujarat</p>
-</div>  
-<div class="col-3">
-<p><span>School ID:</span> 24220101204</p>
-<p><span>Block:</span> Bardoli</p>
-<p><span>Cluster:</span> Kadod</p>
-<p><span>District:</span> Surat</p>
-</div>
 
-</div>
-</div>
-<div>
-<img alt="Illustration of students" class="w-auto h-60 hidden md:block rounded-lg" src="https://i.ibb.co/yBqczXJq/Chat-GPT-Image-Jun-30-2025-06-00-37-PM-removebg-preview.png"/>
-</div>
-</header>
+<body>
 
-<div class="legend">
-<div class="legend-item"><span class="legend-code legend-code-R">AP</span> = Approval Pending</div>
-<div class="legend-item"><span class="legend-code legend-code-R">R</span> = Rejected</div>
-<div class="legend-item"><span class="legend-code legend-code-R">AB</span> = Payment Pending</div>
-<div class="legend-item"><span class="legend-code legend-code-P">N/A</span> = Not Eligible</div>
+    <!-- Page 1: Social Science -->
+    <div class="page">
+        <header class="report-header">
+            <div class="header-logo"><img src="D:/OneDrive - VSK/HP_Laptop/SAT/2025-26/GCERT_logo.png" alt="GCERT Logo"></div>
+            <div class="header-title">
+                <h1>STUDENT REPORT CARD</h1>
+                <p>SEMESTER I EXAM 2024-25</p>
+            </div>
+            <div class="header-samagra-shiksha"><img src="D:/OneDrive - VSK/HP_Laptop/SAT/2025-26/SSANew.png" alt="Samagra Shiksha Logo"></div>
+        </header>
 
-</div>
-</section>
-<section>
-<h2 class="class-header header-flex">
-  <span>Class 11 - A</span>
-  <span>7 Students</span>
-</h2>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Student List</th>
-<th>Jun </th>
-<th>Jul </th>
-<th>Aug </th>
-<th>Sept </th>
-<th>Oct </th>
-<th>Nov </th>
-<th>Dec </th>
-<th>Jan </th>
-<th>Feb </th>
-<th>Mar </th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="student-name">Harshita Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">9000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Neh Jain</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Jiten Bhai Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">10000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Amit Shah</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td class="total-amount">9000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Abdul Kalam</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">10000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Mohan Das</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Aman Modi</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td class="total-amount">8000</td>
-</tr>
-</tbody>
-</table>
-</div>
-<section>
-<h2 class="class-header header-flex">
-  <span>Class 12 - A</span>
-  <span>7 Students</span>
-</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Student List</th>
-<th>Jun </th>
-<th>Jul </th>
-<th>Aug </th>
-<th>Sept </th>
-<th>Oct </th>
-<th>Nov </th>
-<th>Dec </th>
-<th>Jan </th>
-<th>Feb </th>
-<th>Mar </th>
-<th>Bonus</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="student-name">Harshita Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">15000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Neh Jain</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Jiten Bhai Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-PP">PP</span></td>
-<td><span class="status-badge status-PP">PP</span></td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Amit Shah</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-PP">PP</span></td>
-<td><span class="status-badge status-PP">PP</span></td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Abdul Kalam</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">15000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Mohan Das</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Aman Modi</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">13000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
+        <section class="student-info-section">
+            <div class="student-info-grid">
+                <div class="info-item"><span class="info-label">CHILD UID</span><span class="info-value">241408013011710224</span></div>
+                <div class="info-item"><span class="info-label">STUDENT</span><span class="info-value">AASHISH RATHVA</span></div>
+                <div class="info-item"><span class="info-label">Age</span><span class="info-value">13</span></div>
+                <div class="info-item"><span class="info-label">Gender</span><span class="info-value">Male</span></div>
+                <div class="info-item"><span class="info-label">UDISE CODE</span><span class="info-value">24320301201</span></div>
+                <div class="info-item"><span class="info-label">SCHOOL</span><span class="info-value">BHEKHADIYA PRIMARY SCHOOL</span></div>
+                <div class="info-item"><span class="info-label">DISTRICT</span><span class="info-value">CHHOTAUDEPUR</span></div>
+                <div class="info-item"><span class="info-label">BLOCK NAME</span><span class="info-value">KAWANT</span></div>
+                <div class="info-item"><span class="info-label">CLUSTER</span><span class="info-value">BHEKHADIYA</span></div>
+                <div class="info-item"><span class="info-label">SUB. TEACHER</span><span class="info-value">PARMAR VIMALKUMAR KANTILAL</span></div>
+            </div>
+        </section>
 
-</body></html>
+        <div class="subject-header">
+             <div class="subject-info-item"><span class="subject-info-label">STD:</span><span class="subject-info-value">8</span></div>
+             <div class="subject-info-item"><span class="subject-info-label">વિષય :</span><span class="subject-info-value">સામાજિક વિજ્ઞાન</span></div>
+        </div>
+
+        <div class="section-title">સિદ્ધિઓ</div>
+        <table class="marks-table">
+            <thead>
+                <tr>
+                    <th>પ્રશ્ન નંબર</th><th>લર્નિંગ આઉટકમ</th><th>G-Shala Link</th><th>મેળવેલ ગુણ</th><th>કુલ ગુણ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Q6</td><td>પૃથ્વી પરના માનવીય અને કુદરતી સંસાધનોના અસમાન વિતરણનું વિશ્લેષણ કરે છે.</td><td><a href="#">Click Here</a></td><td>4</td><td>4</td></tr>
+                <tr><td>Q3</td><td>19મી સદીના ભારતની વિવિધ આદિજાતિઓનાં સ્વરૂપો અને પર્યાવરણ સાથેના સબંધોનું વર્ણન કરે છે.</td><td><a href="#">Click Here</a></td><td>4</td><td>4</td></tr>
+                <tr><td>Q7</td><td>તમામ વિસ્તારોના વિકાસને જાળવી રાખવા માટે કુદરતી સંસાધનોના ન્યાયિક ઉપયોગને દર્શાવે છે. જેવાં કે જળ, જમીન, જંગલ વગેરે.</td><td><a href="#">Click Here</a></td><td>5</td><td>5</td></tr>
+                <tr><td>Q12</td><td>લોકસભા ચૂંટણીપદ્ધતિ વર્ણવે છે.</td><td><a href="#">Click Here</a></td><td>4</td><td>4</td></tr>
+                <tr><td>Q10</td><td>ભારતીય બંધારણના સંદર્ભમાં પોતાના પ્રદેશમાં સામાજિક અને રાજકીય સમસ્યાઓનું અર્થઘટન કરી મૂળભૂત હકો અને ફરજોને યોગ્ય ઉદાહરણો સાથે સમજે છે.</td><td><a href="#">Click Here</a></td><td>9</td><td>11</td></tr>
+                <tr><td>Q4</td><td>1857ના સ્વાતંત્ર્ય સંગ્રામનાં કારણો, તેનું સ્વરૂપ, તેનો ફેલાવો અને મળેલ પદાર્થપાઠનું વર્ણન કરે છે.</td><td><a href="#">Click Here</a></td><td>8</td><td>10</td></tr>
+                <tr><td>Q8</td><td>અગત્યના કુદરતી ખનીજોનું વર્ગીકરણ દર્શાવે છે. (દા.ત.કોલસો અને ખનીજતેલના કેન્દ્રોને દુનિયાના નકશામાં દર્શાવે છે.)</td><td><a href="#">Click Here</a></td><td>6</td><td>8</td></tr>
+                <tr><td>Q5</td><td>સંસ્થાનવાદ સમયે ભારતમાં હસ્તકલા ઉદ્યોગ અને નવા શહેરીકરણનું પૃથક્કરણ કરે છે.</td><td><a href="#">Click Here</a></td><td>6</td><td>8</td></tr>
+                <tr><td>Q1</td><td>બ્રિટીશ ઇસ્ટ ઇન્ડિયા કંપની ભારતમાં સર્વોચ્ચ સત્તા કઈ રીતે બની તે સમજે છે અને સમજ પ્રદર્શિત કરે છે.</td><td><a href="#">Click Here</a></td><td>4</td><td>8</td></tr>
+                <tr><td>Q9</td><td>સ્થાનિક વિસ્તારના અને રાજ્યના મુખ્ય પાકો, ખેતીના પ્રકારો, ખેત ઉત્પાદનપદ્ધતિઓનું વર્ણન કરે છે.</td><td><a href="#">Click Here</a></td><td>4</td><td>10</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">આવશ્યક ઉપચારાત્મક કાર્ય</div>
+         <table class="marks-table">
+            <thead>
+                <tr><th>પ્રશ્ન નંબર</th><th>લર્નિંગ આઉટકમ</th><th>G-Shala Link</th><th>મેળવેલ ગુણ</th><th>કુલ ગુણ</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Q11</td><td>રાજ્ય અને સંઘ સરકાર વચ્ચેનો તફાવત સમજે છે.</td><td><a href="#">Click Here</a></td><td>0</td><td>4</td></tr>
+                <tr><td>Q2</td><td>ભારતના વિવિધ પ્રાંતોમાં બ્રિટીશ સરકારની ખેતીવિષયક ભેદભાવની નીતિની અસર સમજે છે અને સમજાવે છે. (દા.ત..ગળી ઉત્પાદકોનો બળવો...)</td><td><a href="#">Click Here</a></td><td>0</td><td>4</td></tr>
+            </tbody>
+        </table>
+
+        
+        <div class="section-title">રિમાર્કસ</div>
+        <div class="remarks-section">
+            <p>AASHISH RATHVA એ "<strong>પૃથ્વી પરના માનવીય અને કુદરતી સંસાધનોના અસમાન વિતરણનું વિશ્લેષણ કરે છે.</strong>" LO સિદ્ધ કરેલ છે. જ્યારે “<strong>ભારતના વિવિધ પ્રાંતોમાં બ્રિટીશ સરકારની ખેતીવિષયક ભેદભાવની નીતિની અસર સમજે છે અને સમજાવે છે. (દા.ત..ગળી ઉત્પાદકોનો બળવો...)</strong>” LO માં સઘન ઉપચારાત્મક કાર્યની જરૂરીયાત છે તેમજ આવશ્યક ઉપચારાત્મક કાર્ય માં સમાવિષ્ટ LOs માં ઉપચારાત્મક કાર્યની આવશ્યકતા છે. જે G-SHALA app ના માધ્યમથી મહાવરો કરી શકો છો. જેના માટે LO ની બાજુ માં આપેલ લિંક પર ક્લિક કરશો.</p>
+        </div>
+
+        <footer class="footer-section">
+            <div class="signature-block">
+                <div class="signature-item"><span class="signature-label">વર્ગ શિક્ષકશ્રીની સહી:</span><div class="signature-line"></div></div>
+                <div class="signature-item"><span class="signature-label">મુખ્ય શિક્ષકશ્રીની / આચાર્યશ્રીની સહી:</span><div class="signature-line"></div></div>
+                <div class="signature-item"><span class="signature-label">વાલીની સહી:</span><div class="signature-line"></div></div>
+            </div>
+            <div class="g-shala-section">
+                <p>G-Shala App ડાઉનલોડ કરવા માટે<br><a href="https://www.gshala.in">https://www.gshala.in</a><br>પર ક્લિક કરરો અથવા QR Code સ્કે ન કરો</p>
+                <img src="D:/OneDrive - VSK/HP_Laptop/SAT/2025-26/Gshala.png" alt="G-Shala QR Code">
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Page for English -->
+    
+    <!-- Page 8: Summary -->
+    <div class="page">
+        <header class="report-header">
+            <div class="header-logo"><img src="D:/OneDrive - VSK/HP_Laptop/SAT/2025-26/GCERT_logo.png" alt="GCERT Logo"></div>
+            <div class="header-title">
+                <h1>STUDENT REPORT CARD</h1>
+                <p>સત્રાંત પરીક્ષા એકંદરી પરિણામ પત્રક</p>
+            </div>
+            <div class="header-samagra-shiksha"><img src="D:/OneDrive - VSK/HP_Laptop/SAT/2025-26/SSANew.png" alt="Samagra Shiksha Logo"></div>
+        </header>
+        
+        <section class="student-info-section" style="margin-top: 20px;">
+            <div class="summary-info-grid">
+                <div class="info-item"><span class="info-label">CHILD UID</span><span class="info-value">241408013011710224</span></div>
+                <div class="info-item"><span class="info-label">STUDENT</span><span class="info-value">AASHISH RATHVA</span></div>
+                <div class="info-item"><span class="info-label">UDISE CODE</span><span class="info-value">24320301201</span></div>
+                <div class="info-item"><span class="info-label">SCHOOL</span><span class="info-value">BHEKHADIYA PRIMARY SCHOOL</span></div>
+                <div class="info-item"><span class="info-label">Age</span><span class="info-value">13</span></div>
+                <div class="info-item"><span class="info-label">Gender</span><span class="info-value">Male</span></div>
+            </div>
+        </section>
+
+        <section class="health-info-section">
+            <div class="section-title">આરોગ્ય માહિતી</div>
+            <div class="health-info-content">
+                <div class="bmi-gauge-container">
+                    <div class="bmi-gauge">
+                        <div class="bmi-gauge-base"></div>
+                        <div class="bmi-gauge-cover"></div>
+                        <div class="bmi-needle"></div>
+                        <div class="bmi-needle-hub"></div>
+                    </div>
+                    <div class="bmi-label">BMI: 17.9 (Underweight)</div>
+                </div>
+                <div class="health-details-grid">
+                    <div class="health-item"><span class="info-label">Age</span><span class="info-value">13</span></div>
+                    <div class="health-item"><span class="info-label">Gender</span><span class="info-value">Male</span></div>
+                    <div class="health-item"><span class="info-label">Hemoglobin</span><span class="info-value">-</span></div>
+                    <div class="health-item"><span class="info-label">Blood Group</span><span class="info-value">-</span></div>
+                    <div class="health-item"><span class="info-label">Height(cm)</span><span class="info-value">142</span></div>
+                    <div class="health-item"><span class="info-label">Weight(Kg)</span><span class="info-value">36</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="section-title">સત્રાંત પરીક્ષા એકંદરી પરિણામ પત્રક</div>
+            <table class="summary-table">
+                <thead>
+                    <tr><th></th><th>અંગ્રેજી(દ્વિતીય ભાષા)</th><th>ગુજરાતી(પ્રથમ ભાષા)</th><th>હિન્દી(દ્વિતીય ભાષા)</th><th>ગણિત</th><th>સંસ્કૃત</th><th>વિજ્ઞાન</th><th>સામાજિક વિજ્ઞાન</th><th>કુલ</th><th>%</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="final-score"><td>સત્ર-1</td><td>54</td><td>29</td><td>47</td><td>49</td><td>70</td><td>54</td><td>54</td><td>357</td><td>63.75</td></tr>
+                </tbody>
+            </table>
+            <div class="final-summary-text">સત્ર-1 ના કુલ ગુણ 560 માંથી 357 (63.75 %) ગુણ મેળવેલ છે.</div>
+        </section>
+
+        <section class="attendance-section">
+            <div class="section-title">સરેરાશ હાજરી</div>
+            <div class="attendance-chart-container">
+                <div class="attendance-chart">
+                     <div class="attendance-chart-bg-lines"><div></div><div></div><div></div><div></div><div></div></div>
+                    <div class="bar" style="height: 14%;"><span class="bar-label-top">14%</span><span class="bar-label-bottom">Jun-24</span></div>
+                    <div class="bar" style="height: 80%;"><span class="bar-label-top">80%</span><span class="bar-label-bottom">July-24</span></div>
+                    <div class="bar" style="height: 70%;"><span class="bar-label-top">70%</span><span class="bar-label-bottom">Aug-24</span></div>
+                    <div class="bar" style="height: 87%;"><span class="bar-label-top">87%</span><span class="bar-label-bottom">Sep-24</span></div>
+                    <div class="bar" style="height: 90%;"><span class="bar-label-top">90%</span><span class="bar-label-bottom">Oct-24</span></div>
+                    <div class="bar avg-bar" style="height: 68%;"><span class="bar-label-top">68%</span><span class="bar-label-bottom">Average</span></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
