@@ -1,478 +1,802 @@
-
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Namo Lakshmi Saraswati School Payment Report Card : 2024 - 25</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;1000;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fafc;
-        }
-        .report-card-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .header-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .header-text h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #2d3748;
-        }
-        .header-text p {
-            font-size: 0.875rem;
-            color: #718096;
-        }
-        .school-info {
-            font-size: 0.875rem;
-            color: #4a5568;
-            background-color: #f9fafb;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            
-        }
-        .school-info span {
-            font-weight: 600;
-            color: #2d3748;
-        }
-        .legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-            font-size: 0.875rem;
-            padding: 1rem;
-            background-color: #f9fafb;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid #e2e8f0;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-        }
-        .legend-code {
-            font-weight: 700;
-            margin-right: 0.25rem;
-        }
-        .legend-code-R { color: #ef4444; }
-        .legend-code-O { color: #f97316; }
-        .legend-code-Y { color: #f59e0b; }
-        .legend-code-B { color: #3b82f6; }
-        .legend-code-G { color: #10b981; }
-        .legend-code-P { color: #57565b; }
-        .table-container {
-            overflow-x: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th,
-        td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.875rem;
-        }
-        thead th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        tbody tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-        tbody tr:hover {
-            background-color: #f1f5f9;
-        }
-        .student-name {
-            font-weight: 1000;
-            color: #1e293b;
-        }
-        .student-id {
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-        .status-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;font-weight: 600;
-            font-size: 0.75rem;
-            text-align: center;
-        }
-        .status-A { background-color: #dbeafe; color: #1d4ed8; }.status-B { background-color: #d1fae5; color: #057a55; }.status-PP { background-color: #ede9fe; color: #6d28d9; }.status-R { background-color: #fee2e2; color: #b91c1c; }.status-P { background-color: #fef3c7; color: #b45309; }.status-NA { background-color: #fee2e2; color: #b91c1c; }.status-NR { background-color: #fed7aa; color: #c2410c; }.status-NA { background-color: #e5e7eb; color: #4b5563; }.total-amount {
-            font-weight: 700;
-            color: #047857;}
-        .class-header {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #374151;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #6366f1;}
-        .header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;}
-
-    </style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftChat Lead Capture</title>
+  <link rel="icon" type="image/webp" href="./swiftchat_logo.webp">
+  <link rel="apple-touch-icon" href="./swiftchat_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { jakarta: ["Plus Jakarta Sans", "sans-serif"] }, colors: { swift: "#2F6BFF", ink: "#0C1E52" } } } };
+  </script>
+  <style>
+    body{font-family:"Plus Jakarta Sans",sans-serif;background:radial-gradient(1200px 360px at 100% -10%,#dbe7ff 0%,transparent 52%),radial-gradient(860px 320px at -10% -15%,#edf2ff 0%,transparent 55%),#f5f8ff;color:#12244e}
+    .shell{background:linear-gradient(180deg,#fff,#fdfeff)}
+    .opt{transition:.2s border-color,.2s background-color,.2s box-shadow,.2s transform}
+    .optWrap input:focus-visible+.opt{outline:2px solid rgba(47,107,255,.35);outline-offset:2px}
+    .field:focus{border-color:#2f6bff!important;box-shadow:0 0 0 .25rem rgba(47,107,255,.14)!important}
+    .cta[disabled]{opacity:.55;cursor:not-allowed}
+    .step.hidden{display:none}
+    .mic-wave{display:block;width:100%;height:56px;background:linear-gradient(180deg,#f8fbff,#eef4ff);border:1px solid #dbe7ff;border-radius:12px}
+  </style>
 </head>
-<body class="bg-gray-50">
-<div class="report-card-container">
-<header class="header-section">
-<div class="header-text">
-<h1>Namo Saraswati School Payment Report Card 2024-25</h1>
-<p>Empowering Girls, Supporting Education, Shaping Futures</p>
-<div class="school-info row ">
-<div class="col-7">
-<p><span>School Name:</span> Kadod High School</p>
-<p><span>Principal Name:</span> Rameshbhai Patel</p>
-<p><span>School Type:</span> Senior Secondary</p>
-<p><span>School Address:</span> Bardoli, Surat, Gujarat</p>
-</div>  
-<div class="col-3">
-<p><span>School ID:</span> 24220101204</p>
-<p><span>Block:</span> Bardoli</p>
-<p><span>Cluster:</span> Kadod</p>
-<p><span>District:</span> Surat</p>
-</div>
+<body class="min-h-screen py-4 md:py-8">
+  <div class="mx-auto w-full max-w-[460px] px-3">
+    <div class="shell min-h-[92vh] md:min-h-[860px] rounded-[30px] border border-blue-100 shadow-xl overflow-hidden relative flex flex-col">
+      <header class="sticky top-0 z-20 border-b border-blue-100 bg-white/95 backdrop-blur px-4 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <img src="./swiftchat_logo.webp" alt="SwiftChat logo" class="h-9 w-9 rounded-xl object-cover border border-blue-100">
+            <div>
+              <p class="mb-0 text-xs uppercase tracking-[0.2em] text-slate-400">Lead Capture</p>
+              <h1 class="mb-0 text-lg font-extrabold text-ink">SwiftChat</h1>
+            </div>
+          </div>
+          <button type="button" class="btn btn-light rounded-circle border border-slate-200" aria-label="Open menu"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </header>
 
-</div>
-</div>
-<div>
-<img alt="Illustration of students" class="w-auto h-60 hidden md:block rounded-lg" src="https://i.ibb.co/yBqczXJq/Chat-GPT-Image-Jun-30-2025-06-00-37-PM-removebg-preview.png"/>
-</div>
-</header>
+      <div id="wizard" class="flex flex-col flex-1 min-h-0">
+        <main class="flex-1 overflow-y-auto px-4 pt-4 pb-32">
+          <div class="mb-3 flex items-center justify-between">
+            <span id="timerBadge" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700"><i class="fa-regular fa-clock"></i><span>1:00 Min</span></span>
+            <span id="progressLabel" class="text-xs font-semibold text-slate-500">Step 1 of 6</span>
+          </div>
+          <div id="progress" class="mb-5 grid grid-cols-6 gap-2" aria-label="Progress"></div>
+          <form id="leadForm" novalidate>
+            <section class="step" data-step="1"></section>
+            <section class="step hidden" data-step="2"></section>
+            <section class="step hidden" data-step="3"></section>
+            <section class="step hidden" data-step="4"></section>
+            <section class="step hidden" data-step="5"></section>
+            <section class="step hidden" data-step="6"></section>
+          </form>
+        </main>
 
-<div class="legend">
-<div class="legend-item"><span class="legend-code legend-code-R">AP</span> = Approval Pending</div>
-<div class="legend-item"><span class="legend-code legend-code-R">R</span> = Rejected</div>
-<div class="legend-item"><span class="legend-code legend-code-R">AB</span> = Payment Pending</div>
-<div class="legend-item"><span class="legend-code legend-code-P">N/A</span> = Not Eligible</div>
+        <footer class="sticky bottom-0 z-20 border-t border-blue-100 bg-white/95 backdrop-blur px-4 py-3">
+          <p id="hint" class="mb-2 min-h-[20px] text-xs font-semibold text-slate-500" aria-live="polite"></p>
+          <div class="grid grid-cols-3 gap-2">
+            <button id="backBtn" type="button" class="btn btn-light col-span-1 rounded-3 border border-slate-200 py-3 font-semibold text-slate-600 invisible">Back</button>
+            <button id="nextBtn" type="button" class="cta btn col-span-2 rounded-3 py-3 font-bold text-white" style="background:#2f6bff" disabled>Next</button>
+          </div>
+        </footer>
+      </div>
 
-</div>
-</section>
-<section>
-<h2 class="class-header header-flex">
-  <span>Class 11 - A</span>
-  <span>7 Students</span>
-</h2>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Student List</th>
-<th>Jun </th>
-<th>Jul </th>
-<th>Aug </th>
-<th>Sept </th>
-<th>Oct </th>
-<th>Nov </th>
-<th>Dec </th>
-<th>Jan </th>
-<th>Feb </th>
-<th>Mar </th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="student-name">Harshita Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">9000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Neh Jain</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Jiten Bhai Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">10000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Amit Shah</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td class="total-amount">9000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Abdul Kalam</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td class="total-amount">10000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Mohan Das</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Aman Modi</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td class="total-amount">8000</td>
-</tr>
-</tbody>
-</table>
-</div>
-<section>
-<h2 class="class-header header-flex">
-  <span>Class 12 - A</span>
-  <span>7 Students</span>
-</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Student List</th>
-<th>Jun </th>
-<th>Jul </th>
-<th>Aug </th>
-<th>Sept </th>
-<th>Oct </th>
-<th>Nov </th>
-<th>Dec </th>
-<th>Jan </th>
-<th>Feb </th>
-<th>Mar </th>
-<th>Bonus</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="student-name">Harshita Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">15000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Neh Jain</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td><span class="status-badge status-NR">N/R</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Jiten Bhai Patel</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-PP">PP</span></td>
-<td><span class="status-badge status-PP">PP</span></td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Amit Shah</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-PP">PP</span></td>
-<td><span class="status-badge status-PP">PP</span></td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Abdul Kalam</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">15000</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Mohan Das</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td><span class="status-badge status-NA">N/A</span></td>
-<td class="total-amount">N/A</td>
-</tr>
-<tr>
-<td>
-<div class="student-name">Aman Modi</div>
-<div class="student-id">228390293892234567</div>
-</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>1000</td>
-<td><span class="status-badge status-A">A</span></td>
-<td>1000</td>
-<td>5000</td>
-<td class="total-amount">13000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
+      <section id="success" class="hidden absolute inset-0 z-30 bg-white px-6 py-10 flex items-center justify-center">
+        <div id="successCard" class="w-full rounded-[28px] border border-emerald-100 bg-emerald-50/60 p-7 text-center shadow-lg">
+          <span id="successBadge" class="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500 text-white"><i class="fa-solid fa-check text-2xl"></i></span>
+          <h3 class="mb-2 text-2xl font-extrabold text-slate-800">Submitted ✅</h3>
+          <p class="mb-5 text-slate-600">We will reach out soon.</p>
+          <button id="resetBtn" type="button" class="btn btn-lg w-full rounded-3 py-3 font-bold text-white" style="background:#2f6bff">Submit another response</button>
+        </div>
+      </section>
+    </div>
+  </div>
 
-</body></html>
+  <div id="toastHost" class="position-fixed bottom-0 start-50 translate-middle-x p-3" style="width:min(420px,94vw);z-index:1080"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>
+    /* Setup: replace APPS_SCRIPT_URL with your deployed Google Apps Script Web App URL before production use. */
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7kxTaxP4RwqG-SLEyaqA51FUknNzOpNmTd-hZyyRznmOhpCsh9prWkF_3XwSnCz2p8g/exec";
+    const APPS_SCRIPT_LIBRARY_URL = "https://script.google.com/macros/library/d/1qvvkuRgvXCSuGS5FgqlLmomwVvjqyHcc-5YPi7_uVy44rGZFJVQGsdKy/3";
+    const SOURCE_TAG = "QR_Stall_Delhi_AI_Meetup";
+    const QUEUE_KEY = "swiftchat_lead_queue";
+    const STEPS = 6;
+
+    const options = {
+      intent:["Host my product on SwiftChat","Co-build a product with SwiftChat","Integrate with SwiftChat APIs","Distribute to 150M+ users","Explore investment/partnership","Use a product built on SwiftChat","Just exploring / learn more"],
+      orgType:["EdTech startup","Education non profit","Government agency","Multi lateral agency","Funder","Enterprise / Corporate","Developer / Product Builder","Others"],
+      stage:["Idea","MVP","Early revenue","Scaling","Enterprise"],
+      problemAreas:["Distribution & user acquisition","AI-powered learning","Govt deployment","Skill development","Assessment/testing","Vernacular/Bharat-first","Hosting/infra","Other"]
+    };
+
+    const state = { currentStep:1, isSubmitting:false, intent:[], orgType:[], stage:"", problemAreas:[], otherProblemText:"", name:"", orgName:"", email:"", mobile:"", notes:"", voiceNote:null, isRecording:false };
+
+    const form = document.getElementById("leadForm");
+    const panels = Array.from(document.querySelectorAll(".step"));
+    const progress = document.getElementById("progress");
+    const progressLabel = document.getElementById("progressLabel");
+    const timerText = document.querySelector("#timerBadge span");
+    const hint = document.getElementById("hint");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const wizard = document.getElementById("wizard");
+    const success = document.getElementById("success");
+    const resetBtn = document.getElementById("resetBtn");
+    const toastHost = document.getElementById("toastHost");
+
+    let timer = 60;
+    let timerHandle = null;
+    const MAX_RECORD_SECONDS = 30;
+    let recorder = null;
+    let recorderChunks = [];
+    let recorderStream = null;
+    let recorderStartedAt = 0;
+    let recorderAutoStop = null;
+    let recordingFinalizePromise = Promise.resolve();
+    let resolveRecordingFinalize = null;
+    let micAudioCtx = null;
+    let micAnalyser = null;
+    let micSource = null;
+    let micWaveData = null;
+    let micWaveFrame = null;
+
+    renderProgress();
+    renderAllSteps();
+    bindGlobalEvents();
+    tickTimer();
+    timerHandle = setInterval(tickTimer, 1000);
+    updateUI();
+    attemptQueueSync(false);
+
+    function renderProgress(){
+      progress.innerHTML = Array.from({length:STEPS},(_,i)=>`<span data-p="${i+1}" class="h-2 rounded-full ${i===0?"bg-swift":"bg-slate-200"}"></span>`).join("");
+    }
+
+    function cardInput(type,name,value,label,extra=""){
+      return `<label class="optWrap block cursor-pointer ${extra}"><input class="peer sr-only" type="${type}" name="${name}" value="${escapeHtml(value)}"><span class="opt flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 peer-checked:border-swift peer-checked:bg-blue-50 peer-checked:text-blue-700 peer-checked:shadow-md">${escapeHtml(label)}</span></label>`;
+    }
+
+    function renderAllSteps(){
+      panels[0].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">What brings you here?</h2><p class="mb-4 text-sm text-slate-500">Pick one or more options.</p><div class="grid gap-3">${options.intent.map(v=>cardInput("checkbox","intent",v,v)).join("")}</div>`;
+      panels[1].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">Organisation type</h2><p class="mb-4 text-sm text-slate-500">Choose one or more that fit.</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${options.orgType.map(v=>cardInput("checkbox","orgType",v,v)).join("")}</div>`;
+      panels[2].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">Stage</h2><p class="mb-4 text-sm text-slate-500">Where are you currently?</p><div class="grid grid-cols-2 gap-3">${options.stage.map((v,i)=>cardInput("radio","stage",v,v,i===4?"col-span-2":"")).join("")}</div>`;
+      panels[3].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">What are you solving?</h2><p class="mb-4 text-sm text-slate-500">Select all relevant areas.</p><div class="grid gap-3">${options.problemAreas.map(v=>cardInput("checkbox","problemAreas",v,v)).join("")}</div><div id="otherWrap" class="hidden mt-3"><label for="otherProblemText" class="form-label mb-2 text-sm font-semibold text-slate-700">Tell us briefly</label><input id="otherProblemText" type="text" maxlength="100" class="field form-control form-control-lg rounded-3 border-slate-200" placeholder="Add your problem area"></div>`;
+      panels[4].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">Your details</h2><p class="mb-4 text-sm text-slate-500">We only need the essentials.</p>${field("name","Full Name","text","name")}${field("orgName","Organisation Name","text","organization")}${field("email","Email","email","email")}${field("mobile","Mobile","tel","tel","+91XXXXXXXXXX")}`;
+      panels[5].innerHTML = `<h2 class="mb-2 text-2xl font-extrabold text-ink">Help us prepare</h2><p class="mb-4 text-sm text-slate-500">In 2-3 lines: what you are building + what you want from SwiftChat.</p><div class="mb-4"><label for="notes" class="form-label text-sm font-semibold text-slate-700">Notes</label><textarea id="notes" class="field form-control rounded-3 border-slate-200" rows="4" maxlength="500" placeholder="Example: We are building an AI upskilling platform and need distribution + infra support."></textarea></div><div class="rounded-3xl border border-blue-100 bg-blue-50/60 p-4"><div class="mb-2 flex items-center justify-between"><p class="mb-0 text-sm font-semibold text-slate-700">Optional voice note (mic)</p><span id="micTimer" class="rounded-full bg-white px-2 py-1 text-xs font-bold text-blue-700 border border-blue-100">0s / 30s</span></div><canvas id="micWave" class="mic-wave mb-2" width="320" height="56" aria-label="Voice waveform preview"></canvas><div class="grid grid-cols-2 gap-2"><button id="micToggleBtn" type="button" class="btn btn-primary rounded-3 py-2"><i class="fa-solid fa-microphone me-1"></i> Start</button><button id="micClearBtn" type="button" class="btn btn-light border rounded-3 py-2" disabled><i class="fa-solid fa-trash me-1"></i> Clear</button></div><p id="micStatus" class="mb-2 mt-2 text-xs text-slate-600">Tap Start to record (max 30 sec).</p><audio id="voicePreview" class="hidden w-full" controls preload="none"></audio></div>`;
+
+      bindStepEvents();
+    }
+
+    function field(id,label,type,autocomplete,ph=""){
+      return `<div class="mb-3"><label for="${id}" class="form-label text-sm font-semibold text-slate-700">${label}</label><input id="${id}" type="${type}" class="field form-control form-control-lg rounded-3 border-slate-200" autocomplete="${autocomplete}" ${ph?`placeholder="${ph}"`:""}><p id="${id}Error" class="mb-0 mt-1 text-xs text-red-600" aria-live="polite"></p></div>`;
+    }
+    function bindGlobalEvents(){
+      form.addEventListener("submit", e=>e.preventDefault());
+      form.addEventListener("keydown", e=>{
+        if(e.key==="Enter" && e.target.tagName!=="TEXTAREA" && state.currentStep<6){
+          e.preventDefault();
+          nextBtn.click();
+        }
+      });
+
+      backBtn.addEventListener("click",()=>{ if(state.currentStep>1 && !state.isSubmitting) goTo(state.currentStep-1,-1); });
+      nextBtn.addEventListener("click", async ()=>{
+        if(state.isSubmitting) return;
+        const check = validateStep(state.currentStep,true);
+        if(!check.valid){ showHint(check.message,true); shake(); return; }
+        showHint("",false);
+        if(state.currentStep<6){ goTo(state.currentStep+1,1); return; }
+        await submitLead();
+      });
+
+      resetBtn.addEventListener("click",resetFlow);
+      window.addEventListener("online",()=>{ showToast("Back online. Syncing saved responses..."); attemptQueueSync(true); });
+      window.addEventListener("offline",()=>{ showToast("You are offline. Responses will be saved locally.","warning"); });
+    }
+
+    function bindStepEvents(){
+      form.querySelectorAll('input[name="intent"]').forEach(i=>i.addEventListener("change",()=>{ state.intent = checked('input[name="intent"]'); pulse(i); updateUI(); }));
+      form.querySelectorAll('input[name="orgType"]').forEach(i=>i.addEventListener("change",()=>{ state.orgType = checked('input[name="orgType"]'); pulse(i); updateUI(); }));
+      form.querySelectorAll('input[name="stage"]').forEach(i=>i.addEventListener("change",()=>{ state.stage = i.value; pulse(i); updateUI(); }));
+
+      form.querySelectorAll('input[name="problemAreas"]').forEach(i=>i.addEventListener("change",()=>{
+        state.problemAreas = checked('input[name="problemAreas"]');
+        const showOther = state.problemAreas.includes("Other");
+        const wrap = document.getElementById("otherWrap");
+        if(wrap){
+          if(showOther && wrap.classList.contains("hidden")){
+            wrap.classList.remove("hidden");
+            gsap.fromTo(wrap,{opacity:0,y:-6},{opacity:1,y:0,duration:.2});
+          }
+          if(!showOther && !wrap.classList.contains("hidden")){
+            document.getElementById("otherProblemText").value = "";
+            state.otherProblemText = "";
+            gsap.to(wrap,{opacity:0,y:-6,duration:.16,onComplete:()=>{wrap.classList.add("hidden");wrap.style.opacity="";wrap.style.transform="";}});
+          }
+        }
+        pulse(i); updateUI();
+      }));
+
+      const other = document.getElementById("otherProblemText");
+      if(other) other.addEventListener("input",()=>{ state.otherProblemText = other.value.trim(); updateUI(); });
+
+      ["name","orgName","email","mobile"].forEach(id=>{
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.addEventListener("input",()=>{ syncDetails(); validateStep(5,true); updateUI(); });
+        el.addEventListener("blur",()=>{ syncDetails(); validateStep(5,true); updateUI(); });
+      });
+
+      const mobile = document.getElementById("mobile");
+      if(mobile) mobile.addEventListener("blur",()=>{
+        const m = normalizeMobile(mobile.value);
+        if(m.valid){ mobile.value = m.normalized; state.mobile = m.normalized; }
+        validateStep(5,true);
+      });
+
+      const notes = document.getElementById("notes");
+      if(notes) notes.addEventListener("input",()=>{ state.notes = notes.value.trim(); });
+
+      document.querySelectorAll(".field").forEach(el=>{
+        el.addEventListener("focus",()=>gsap.to(el,{scale:1.01,duration:.15}));
+        el.addEventListener("blur",()=>gsap.to(el,{scale:1,duration:.15}));
+      });
+
+      bindMicRecorder();
+    }
+
+    function goTo(step,direction){
+      const from = panel(state.currentStep);
+      const to = panel(step);
+      state.currentStep = step;
+      updateUI();
+      showHint("",false);
+      gsap.killTweensOf([from,to]);
+      gsap.to(from,{x:-32*direction,opacity:0,duration:.2,ease:"power1.out",onComplete:()=>{
+        from.classList.add("hidden");
+        from.style.opacity=""; from.style.transform="";
+        to.classList.remove("hidden");
+        gsap.fromTo(to,{x:32*direction,opacity:0},{x:0,opacity:1,duration:.25,ease:"power2.out"});
+        const f = to.querySelector("input,textarea,button"); if(f) f.focus({preventScroll:true});
+      }});
+    }
+
+    function updateUI(){
+      progressLabel.textContent = `Step ${state.currentStep} of ${STEPS}`;
+      Array.from(progress.querySelectorAll("[data-p]")).forEach((b,i)=>{
+        const on = i+1 <= state.currentStep;
+        b.classList.toggle("bg-swift",on);
+        b.classList.toggle("bg-slate-200",!on);
+      });
+      const v = validateStep(state.currentStep,false);
+      nextBtn.disabled = state.isSubmitting || !v.valid;
+      nextBtn.textContent = state.currentStep===6 ? (state.isSubmitting?"Submitting...":"Submit") : "Next";
+      backBtn.classList.toggle("invisible",state.currentStep===1);
+    }
+
+    function validateStep(step,showErrors){
+      syncDetails();
+      if(step===1) return state.intent.length ? ok() : fail("Select at least one intent to continue.");
+      if(step===2) return state.orgType.length ? ok() : fail("Select at least one organisation type.");
+      if(step===3) return state.stage ? ok() : fail("Choose your current stage.");
+      if(step===4){
+        if(!state.problemAreas.length) return fail("Select at least one problem area.");
+        if(state.problemAreas.includes("Other") && !state.otherProblemText.trim()) return fail("Add a short note for 'Other' problem area.");
+        return ok();
+      }
+      if(step===5) return validateDetails(showErrors);
+      return ok();
+    }
+
+    function validateDetails(showErrors){
+      const e = {name:"",orgName:"",email:"",mobile:""};
+      if(!state.name) e.name = "Full Name is required.";
+      if(!state.orgName) e.orgName = "Organisation Name is required.";
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(state.email||"")) e.email = "Enter a valid email address.";
+      const m = normalizeMobile((document.getElementById("mobile")||{value:""}).value);
+      if(!m.valid){ e.mobile = "Enter a valid Indian mobile number."; state.mobile = ""; } else state.mobile = m.normalized;
+
+      const valid = !e.name && !e.orgName && !e.email && !e.mobile;
+      if(showErrors){
+        ["name","orgName","email","mobile"].forEach(id=> setErr(id, e[id]));
+      }
+      return valid ? ok() : fail("Please complete all required details correctly.");
+    }
+
+    function setErr(id,msg){
+      const el = document.getElementById(id);
+      const er = document.getElementById(`${id}Error`);
+      if(er) er.textContent = msg || "";
+      if(el){
+        el.setAttribute("aria-invalid", msg ? "true" : "false");
+        el.classList.toggle("is-invalid", Boolean(msg));
+      }
+    }
+
+    function bindMicRecorder(){
+      const micToggleBtn = document.getElementById("micToggleBtn");
+      const micClearBtn = document.getElementById("micClearBtn");
+      const micStatus = document.getElementById("micStatus");
+      const micTimer = document.getElementById("micTimer");
+      const micWave = document.getElementById("micWave");
+      const voicePreview = document.getElementById("voicePreview");
+      if(!micToggleBtn || !micClearBtn || !micStatus || !voicePreview || !micTimer || !micWave) return;
+      drawIdleWave(micWave);
+      micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+
+      if(!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined"){
+        micToggleBtn.disabled = true;
+        micClearBtn.disabled = true;
+        micStatus.textContent = "Mic recording is not supported in this browser.";
+        return;
+      }
+
+      micToggleBtn.addEventListener("click", async ()=>{
+        if(state.isRecording){
+          stopRecordingUI(micStatus, micToggleBtn);
+          return;
+        }
+
+        try{
+          recorderStream = await navigator.mediaDevices.getUserMedia({ audio:true });
+          if(voicePreview.dataset.url){
+            URL.revokeObjectURL(voicePreview.dataset.url);
+            voicePreview.dataset.url = "";
+          }
+          voicePreview.pause();
+          voicePreview.src = "";
+          voicePreview.classList.add("hidden");
+          state.voiceNote = null;
+
+          recorderChunks = [];
+          recorder = new MediaRecorder(recorderStream);
+          recorderStartedAt = Date.now();
+          recordingFinalizePromise = new Promise((resolve)=>{ resolveRecordingFinalize = resolve; });
+          state.isRecording = true;
+          micToggleBtn.innerHTML = '<i class="fa-solid fa-stop me-1"></i> Stop';
+          micToggleBtn.classList.remove("btn-primary");
+          micToggleBtn.classList.add("btn-danger");
+          micStatus.textContent = "Recording... tap Stop to finish.";
+          micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+          micClearBtn.disabled = true;
+          startMicVisualization(recorderStream, micWave, micTimer, micStatus);
+
+          recorder.ondataavailable = (ev)=>{ if(ev.data && ev.data.size > 0) recorderChunks.push(ev.data); };
+          recorder.onstop = async ()=>{
+            const blob = new Blob(recorderChunks, { type: recorder.mimeType || "audio/webm" });
+            const durationSec = Math.max(1, Math.round((Date.now() - recorderStartedAt) / 1000));
+            if(voicePreview.dataset.url){
+              URL.revokeObjectURL(voicePreview.dataset.url);
+              voicePreview.dataset.url = "";
+            }
+            const url = URL.createObjectURL(blob);
+            voicePreview.src = url;
+            voicePreview.dataset.url = url;
+            voicePreview.classList.remove("hidden");
+            micClearBtn.disabled = false;
+            micStatus.textContent = `Recorded ${durationSec}s. Ready to submit.`;
+            micTimer.textContent = `${durationSec}s recorded`;
+
+            let base64Audio = "";
+            try{
+              base64Audio = await blobToBase64(blob);
+            }catch{
+              base64Audio = "";
+            }
+
+            state.voiceNote = {
+              mimeType: blob.type || "audio/webm",
+              sizeBytes: blob.size,
+              durationSec,
+              base64: base64Audio
+            };
+            if(resolveRecordingFinalize){
+              resolveRecordingFinalize();
+              resolveRecordingFinalize = null;
+            }
+          };
+
+          recorder.start();
+          recorderAutoStop = setTimeout(()=>{
+            if(state.isRecording) stopRecordingUI(micStatus, micToggleBtn);
+          }, MAX_RECORD_SECONDS * 1000);
+        }catch{
+          micStatus.textContent = "Microphone permission denied or unavailable.";
+          micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+          showToast("Microphone not available. You can still submit without voice note.", "warning");
+          stopMicVisualization(micWave, micTimer);
+          if(resolveRecordingFinalize){
+            resolveRecordingFinalize();
+            resolveRecordingFinalize = null;
+          }
+        }
+      });
+
+      micClearBtn.addEventListener("click", ()=>{
+        if(state.isRecording) stopRecordingUI(micStatus, micToggleBtn);
+        state.voiceNote = null;
+        voicePreview.pause();
+        voicePreview.currentTime = 0;
+        if(voicePreview.dataset.url){
+          URL.revokeObjectURL(voicePreview.dataset.url);
+          voicePreview.dataset.url = "";
+        }
+        voicePreview.src = "";
+        voicePreview.classList.add("hidden");
+        micStatus.textContent = "Tap Start to record (max 30 sec).";
+        micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+        drawIdleWave(micWave);
+        micClearBtn.disabled = true;
+      });
+    }
+
+    function stopRecordingUI(micStatus, micToggleBtn){
+      const micTimer = document.getElementById("micTimer");
+      const micWave = document.getElementById("micWave");
+      state.isRecording = false;
+      if(recorderAutoStop){
+        clearTimeout(recorderAutoStop);
+        recorderAutoStop = null;
+      }
+      if(recorder && recorder.state !== "inactive"){
+        recorder.stop();
+      }else if(resolveRecordingFinalize){
+        resolveRecordingFinalize();
+        resolveRecordingFinalize = null;
+      }
+      if(recorderStream){
+        recorderStream.getTracks().forEach(track=>track.stop());
+        recorderStream = null;
+      }
+      if(micWave && micTimer) stopMicVisualization(micWave, micTimer);
+      micToggleBtn.innerHTML = '<i class="fa-solid fa-microphone me-1"></i> Start';
+      micToggleBtn.classList.remove("btn-danger");
+      micToggleBtn.classList.add("btn-primary");
+      if(!state.voiceNote) micStatus.textContent = "Tap Start to record (max 30 sec).";
+    }
+
+    function startMicVisualization(stream, canvas, micTimer, micStatus){
+      stopMicVisualization(canvas, micTimer);
+      try{
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if(!AudioCtx) return;
+        micAudioCtx = new AudioCtx();
+        micSource = micAudioCtx.createMediaStreamSource(stream);
+        micAnalyser = micAudioCtx.createAnalyser();
+        micAnalyser.fftSize = 256;
+        micAnalyser.smoothingTimeConstant = 0.85;
+        micSource.connect(micAnalyser);
+        micWaveData = new Uint8Array(micAnalyser.frequencyBinCount);
+      }catch{
+        drawIdleWave(canvas);
+        return;
+      }
+
+      const render = ()=>{
+        if(!state.isRecording || !micAnalyser){
+          drawIdleWave(canvas);
+          return;
+        }
+        const elapsed = Math.min(MAX_RECORD_SECONDS, Math.floor((Date.now() - recorderStartedAt) / 1000));
+        micTimer.textContent = `${elapsed}s / ${MAX_RECORD_SECONDS}s`;
+        micStatus.textContent = `Recording... ${elapsed}s`;
+
+        micAnalyser.getByteFrequencyData(micWaveData);
+        drawLiveWave(canvas, micWaveData);
+        micWaveFrame = requestAnimationFrame(render);
+      };
+      micWaveFrame = requestAnimationFrame(render);
+    }
+
+    function stopMicVisualization(canvas, micTimer){
+      if(micWaveFrame){
+        cancelAnimationFrame(micWaveFrame);
+        micWaveFrame = null;
+      }
+      if(micSource){
+        try{ micSource.disconnect(); }catch{}
+        micSource = null;
+      }
+      if(micAnalyser){
+        try{ micAnalyser.disconnect(); }catch{}
+        micAnalyser = null;
+      }
+      micWaveData = null;
+      if(micAudioCtx){
+        try{ micAudioCtx.close(); }catch{}
+        micAudioCtx = null;
+      }
+      drawIdleWave(canvas);
+      if(!state.voiceNote) micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+    }
+
+    function drawIdleWave(canvas){
+      const ctx = canvas.getContext("2d");
+      if(!ctx) return;
+      fitCanvasToDisplay(canvas, ctx);
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = "#eef4ff";
+      ctx.fillRect(0,0,w,h);
+      const mid = h / 2;
+      ctx.strokeStyle = "rgba(47,107,255,0.35)";
+      ctx.lineWidth = Math.max(2, h * 0.06);
+      ctx.beginPath();
+      ctx.moveTo(8, mid);
+      ctx.lineTo(w - 8, mid);
+      ctx.stroke();
+    }
+
+    function drawLiveWave(canvas, data){
+      const ctx = canvas.getContext("2d");
+      if(!ctx) return;
+      fitCanvasToDisplay(canvas, ctx);
+      const w = canvas.width;
+      const h = canvas.height;
+      const bars = 36;
+      const gap = Math.max(2, Math.floor(w / 220));
+      const barW = Math.max(2, Math.floor((w - gap * (bars - 1)) / bars));
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = "#eef4ff";
+      ctx.fillRect(0,0,w,h);
+
+      let sum = 0;
+      for(let i=0;i<data.length;i++) sum += data[i];
+      const loudness = Math.min(1, (sum / data.length) / 170);
+
+      const gradient = ctx.createLinearGradient(0,0,0,h);
+      gradient.addColorStop(0,"#2f6bff");
+      gradient.addColorStop(1,"#7aa0ff");
+      ctx.fillStyle = gradient;
+      ctx.shadowColor = `rgba(47,107,255,${0.15 + loudness * 0.5})`;
+      ctx.shadowBlur = 10 + loudness * 16;
+
+      const center = h / 2;
+      const usableBins = Math.max(1, Math.floor(data.length / bars));
+      for(let i=0;i<bars;i++){
+        const start = i * usableBins;
+        const slice = data.slice(start, start + usableBins);
+        let binAvg = 0;
+        for(let j=0;j<slice.length;j++) binAvg += slice[j];
+        binAvg = slice.length ? binAvg / slice.length : 0;
+        const amp = Math.max(0.08, binAvg / 255) * (0.45 + loudness * 0.9);
+        const barH = Math.max(4, amp * (h - 8));
+        const x = i * (barW + gap);
+        const y = center - barH / 2;
+        ctx.fillRect(x, y, barW, barH);
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    function fitCanvasToDisplay(canvas, ctx){
+      const ratio = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+      const desiredW = Math.max(280, Math.floor(canvas.clientWidth * ratio));
+      const desiredH = Math.max(56, Math.floor(canvas.clientHeight * ratio));
+      if(canvas.width !== desiredW || canvas.height !== desiredH){
+        canvas.width = desiredW;
+        canvas.height = desiredH;
+      }
+      ctx.setTransform(1,0,0,1,0,0);
+    }
+
+    function blobToBase64(blob){
+      return new Promise((resolve, reject)=>{
+        const reader = new FileReader();
+        reader.onloadend = ()=>{
+          const result = String(reader.result || "");
+          const idx = result.indexOf(",");
+          resolve(idx >= 0 ? result.slice(idx + 1) : "");
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    async function submitLead(){
+      await finalizePendingRecording();
+      const payload = makePayload();
+      state.isSubmitting = true;
+      updateUI();
+      showHint("Submitting your response...",false);
+      try{
+        await send(payload);
+        showSuccess();
+      }catch(err){
+        console.error("Submit failed:", err);
+        enqueue(payload);
+        if(String(err && err.message || "").includes("not configured")){
+          showHint("Apps Script URL not configured. Update APPS_SCRIPT_URL.",true);
+        }else{
+          showHint("Network/server issue. Saved offline and will auto-sync.",true);
+        }
+        showToast("Saved offline - will sync when network is back.","warning");
+      }finally{
+        state.isSubmitting = false;
+        updateUI();
+      }
+    }
+
+    async function finalizePendingRecording(){
+      if(!state.isRecording) return;
+      const micStatus = document.getElementById("micStatus");
+      const micToggleBtn = document.getElementById("micToggleBtn");
+      if(micStatus && micToggleBtn) stopRecordingUI(micStatus, micToggleBtn);
+      await recordingFinalizePromise;
+    }
+
+    function makePayload(){
+      syncDetails();
+      return {
+        timestamp:new Date().toISOString(),
+        intent:[...state.intent],
+        orgType:[...state.orgType],
+        stage:state.stage,
+        problemAreas:[...state.problemAreas],
+        otherProblemText:state.otherProblemText,
+        name:state.name,
+        orgName:state.orgName,
+        email:state.email,
+        mobile:state.mobile,
+        notes:state.notes,
+        voiceNote: state.voiceNote ? {
+          mimeType: state.voiceNote.mimeType,
+          sizeBytes: state.voiceNote.sizeBytes,
+          durationSec: state.voiceNote.durationSec,
+          base64: state.voiceNote.base64
+        } : null,
+        userAgent:navigator.userAgent,
+        source:SOURCE_TAG
+      };
+    }
+
+    async function send(payload){
+      if(!isAppsScriptConfigured()) throw new Error("Apps Script URL is not configured");
+      const res = await fetch(APPS_SCRIPT_URL,{
+        method:"POST",
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body:JSON.stringify(payload),
+        cache:"no-store",
+        redirect:"follow"
+      });
+      if(!res.ok) throw new Error("Submission failed: " + res.status);
+      return res;
+    }
+
+    function getQueue(){
+      try{ const q = JSON.parse(localStorage.getItem(QUEUE_KEY) || "[]"); return Array.isArray(q)?q:[]; }
+      catch{ return []; }
+    }
+
+    function setQueue(q){ localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); }
+    function enqueue(payload){ const q=getQueue(); q.push(payload); setQueue(q); }
+
+    async function attemptQueueSync(showResult){
+      if(!navigator.onLine) return;
+      if(!isAppsScriptConfigured()) return;
+      const q = getQueue();
+      if(!q.length) return;
+      const pending = [];
+      for(const payload of q){
+        try{ await send(payload); }
+        catch{ pending.push(payload); }
+      }
+      setQueue(pending);
+      if(showResult){
+        if(!pending.length) showToast("Saved responses synced.");
+        else showToast(`${pending.length} response(s) still pending sync.`,"warning");
+      }
+    }
+
+    function isAppsScriptConfigured(){
+      return Boolean(APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes("PASTE_YOUR_SCRIPT_URL_HERE"));
+    }
+
+    function showSuccess(){
+      showHint("",false);
+      wizard.classList.add("hidden");
+      success.classList.remove("hidden");
+      gsap.fromTo("#successCard",{opacity:0,y:32,scale:.96},{opacity:1,y:0,scale:1,duration:.4,ease:"power2.out"});
+      gsap.fromTo("#successBadge",{scale:.72,rotate:-10},{scale:1,rotate:0,duration:.52,ease:"back.out(2.4)"});
+    }
+
+    function resetFlow(){
+      Object.assign(state,{ currentStep:1,isSubmitting:false,intent:[],orgType:[],stage:"",problemAreas:[],otherProblemText:"",name:"",orgName:"",email:"",mobile:"",notes:"",voiceNote:null,isRecording:false });
+      if(recorderAutoStop){
+        clearTimeout(recorderAutoStop);
+        recorderAutoStop = null;
+      }
+      if(recorder && recorder.state !== "inactive") recorder.stop();
+      if(recorderStream){
+        recorderStream.getTracks().forEach(track=>track.stop());
+        recorderStream = null;
+      }
+      if(resolveRecordingFinalize){
+        resolveRecordingFinalize();
+        resolveRecordingFinalize = null;
+      }
+      recordingFinalizePromise = Promise.resolve();
+      timer = 60;
+      form.reset();
+      const preview = document.getElementById("voicePreview");
+      const micWave = document.getElementById("micWave");
+      const micTimer = document.getElementById("micTimer");
+      if(preview){
+        preview.pause();
+        preview.currentTime = 0;
+        if(preview.dataset.url){
+          URL.revokeObjectURL(preview.dataset.url);
+          preview.dataset.url = "";
+        }
+        preview.src = "";
+        preview.classList.add("hidden");
+      }
+      if(micWave && micTimer) stopMicVisualization(micWave, micTimer);
+      const micStatus = document.getElementById("micStatus");
+      if(micStatus) micStatus.textContent = "Tap Start to record (max 30 sec).";
+      if(micTimer) micTimer.textContent = `0s / ${MAX_RECORD_SECONDS}s`;
+      const micToggleBtn = document.getElementById("micToggleBtn");
+      if(micToggleBtn){
+        micToggleBtn.innerHTML = '<i class="fa-solid fa-microphone me-1"></i> Start';
+        micToggleBtn.classList.remove("btn-danger");
+        micToggleBtn.classList.add("btn-primary");
+      }
+      const micClearBtn = document.getElementById("micClearBtn");
+      if(micClearBtn) micClearBtn.disabled = true;
+      const otherWrap = document.getElementById("otherWrap"); if(otherWrap) otherWrap.classList.add("hidden");
+      ["name","orgName","email","mobile"].forEach(id=>setErr(id,""));
+      showHint("",false);
+      success.classList.add("hidden");
+      wizard.classList.remove("hidden");
+      panels.forEach((p,i)=>p.classList.toggle("hidden",i!==0));
+      updateUI();
+      tickTimer();
+      gsap.fromTo(panel(1),{opacity:0,y:10},{opacity:1,y:0,duration:.24,ease:"power2.out"});
+    }
+
+    function syncDetails(){
+      state.name = ((document.getElementById("name")||{}).value || "").trim();
+      state.orgName = ((document.getElementById("orgName")||{}).value || "").trim();
+      state.email = (((document.getElementById("email")||{}).value || "").trim()).toLowerCase();
+      state.notes = ((document.getElementById("notes")||{}).value || "").trim();
+      state.otherProblemText = ((document.getElementById("otherProblemText")||{}).value || "").trim();
+    }
+
+    function normalizeMobile(v){
+      let d = (v||"").replace(/\D/g,"");
+      if(d.length===12 && d.startsWith("91")) d = d.slice(2);
+      if(d.length===11 && d.startsWith("0")) d = d.slice(1);
+      const valid = /^[6-9]\d{9}$/.test(d);
+      return {digits:d, normalized:valid?`+91${d}`:"", valid};
+    }
+
+    function checked(sel){ return Array.from(form.querySelectorAll(sel+":checked")).map(i=>i.value); }
+    function panel(n){ return form.querySelector(`.step[data-step="${n}"]`); }
+    function ok(){ return {valid:true,message:""}; }
+    function fail(m){ return {valid:false,message:m}; }
+
+    function showHint(msg,isErr){
+      hint.textContent = msg || "";
+      hint.classList.toggle("text-red-600", Boolean(isErr && msg));
+      hint.classList.toggle("text-slate-500", !isErr || !msg);
+    }
+
+    function pulse(input){
+      const surface = input.closest(".optWrap")?.querySelector(".opt");
+      if(!surface) return;
+      gsap.fromTo(surface,{scale:.985},{scale:1,duration:.22,ease:"back.out(2.3)"});
+      gsap.fromTo(surface,{boxShadow:"0 0 0 rgba(47,107,255,0)"},{boxShadow:"0 12px 24px -16px rgba(47,107,255,.65)",duration:.26,yoyo:true,repeat:1});
+    }
+
+    function shake(){ gsap.fromTo(panel(state.currentStep),{x:0},{x:6,yoyo:true,repeat:3,duration:.05,ease:"power1.inOut"}); }
+
+    function tickTimer(){
+      const m = Math.floor(timer/60), s = String(timer%60).padStart(2,"0");
+      timerText.textContent = `${m}:${s} Min`;
+      if(timer>0) timer -= 1;
+    }
+
+    function showToast(message,variant){
+      const cls = variant==="warning" ? "alert-warning" : "alert-dark";
+      toastHost.innerHTML = `<div class="alert ${cls} border-0 shadow-lg rounded-4 py-2 px-3 mb-0 small fw-semibold" role="status" aria-live="polite">${escapeHtml(message)}</div>`;
+      gsap.fromTo(toastHost.firstElementChild,{y:14,opacity:0},{y:0,opacity:1,duration:.2});
+      setTimeout(()=>{
+        if(!toastHost.firstElementChild) return;
+        gsap.to(toastHost.firstElementChild,{opacity:0,y:12,duration:.22,onComplete:()=>{toastHost.innerHTML="";}});
+      },2600);
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[ch]));
+    }
+  </script>
+</body>
+</html>
