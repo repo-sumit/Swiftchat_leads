@@ -7,7 +7,6 @@
  ## Live DM Link
  
  - Google Sheet (Live DataBase):  
-   https://docs.google.com/spreadsheets/d/1DZlmpxJxSHL9y5SwhfIx3yA160Uv8CUtht-RyRnXxZA/edit?usp=sharing
 
    
  ## Live Form
