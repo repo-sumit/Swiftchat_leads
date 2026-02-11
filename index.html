@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwiftChat Leads</title>
+  <title>SwiftChat Lead Capture</title>
   <link rel="icon" type="image/webp" href="./swiftchat_logo.webp">
   <link rel="apple-touch-icon" href="./swiftchat_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,9 +16,10 @@
     tailwind.config = { theme: { extend: { fontFamily: { jakarta: ["Plus Jakarta Sans", "sans-serif"] }, colors: { swift: "#2F6BFF", ink: "#0C1E52" } } } };
   </script>
   <style>
-    body{font-family:"Plus Jakarta Sans",sans-serif;background:radial-gradient(1200px 360px at 100% -10%,#dbe7ff 0%,transparent 52%),radial-gradient(860px 320px at -10% -15%,#edf2ff 0%,transparent 55%),#f5f8ff;color:#12244e}
-    .shell{background:linear-gradient(180deg,#fff,#fdfeff)}
+    body{font-family:"Plus Jakarta Sans",sans-serif;background:linear-gradient(180deg,#f8fbff 0%,#f3f7ff 100%);color:#12244e}
+    .shell{background:linear-gradient(180deg,#fff 0%,#fdfefe 100%)}
     .opt{transition:.2s border-color,.2s background-color,.2s box-shadow,.2s transform}
+    .optWrap input:checked+.opt{transform:translateY(-1px) scale(1.01);box-shadow:0 18px 30px -24px rgba(47,107,255,.7)}
     .optWrap input:focus-visible+.opt{outline:2px solid rgba(47,107,255,.35);outline-offset:2px}
     .field:focus{border-color:#2f6bff!important;box-shadow:0 0 0 .25rem rgba(47,107,255,.14)!important}
     .cta[disabled]{opacity:.55;cursor:not-allowed}
@@ -26,29 +27,39 @@
     .mic-wave{display:block;width:100%;height:56px;background:linear-gradient(180deg,#f8fbff,#eef4ff);border:1px solid #dbe7ff;border-radius:12px}
   </style>
 </head>
-<body class="min-h-screen py-4 md:py-8">
-  <div class="mx-auto w-full max-w-[460px] px-3">
-    <div class="shell min-h-[92vh] md:min-h-[860px] rounded-[30px] border border-blue-100 shadow-xl overflow-hidden relative flex flex-col">
-      <header class="sticky top-0 z-20 border-b border-blue-100 bg-white/95 backdrop-blur px-4 py-3">
+<body class="min-h-screen">
+  <div class="shell min-h-screen w-full">
+    <div class="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col">
+      <header class="sticky top-0 z-20 border-b border-blue-100 bg-white/95 backdrop-blur px-4 py-4">
         <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <img src="./swiftchat_logo.webp" alt="SwiftChat logo" class="h-9 w-9 rounded-xl object-cover border border-blue-100">
-            <div>
-              <p class="mb-0 text-xs uppercase tracking-[0.2em] text-slate-400">Lead Capture</p>
-              <h1 class="mb-0 text-lg font-extrabold text-ink">SwiftChat</h1>
-            </div>
-          </div>
-          <button type="button" class="btn btn-light rounded-circle border border-slate-200" aria-label="Open menu"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+          <h1 class="mb-0 text-[1.7rem] font-extrabold tracking-tight text-ink">SwiftChat</h1>
+          <img src="https://i.ibb.co/zT6pKqKg/swiftchat-logo.jpg" alt="SwiftChat logo" class="h-12 w-12 rounded-2xl object-cover border border-blue-100 shadow-sm">
         </div>
       </header>
 
-      <div id="wizard" class="flex flex-col flex-1 min-h-0">
+      <section id="landingScreen" class="flex flex-1 items-center px-4 py-8">
+        <div class="w-full rounded-3xl border border-blue-100 bg-white p-4 shadow-sm">
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="https://i.ibb.co/zT6pKqKg/swiftchat-logo.jpg" alt="SwiftChat icon" class="h-12 w-12 shrink-0 rounded-2xl object-cover">
+              <div>
+                <h2 class="mb-1 text-2xl font-extrabold text-ink">Let's get started</h2>
+                <p class="mb-0 text-sm text-slate-500">Tell us what you're looking to build with SwiftChat.</p>
+              </div>
+            </div>
+            <button id="startBtn" type="button" class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-swift text-lg text-white shadow-sm" aria-label="Start form">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="wizard" class="hidden flex flex-col flex-1 min-h-0">
         <main class="flex-1 overflow-y-auto px-4 pt-4 pb-32">
-          <div class="mb-3 flex items-center justify-between">
-            <span id="timerBadge" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700"><i class="fa-regular fa-clock"></i><span>1:00 Min</span></span>
+          <div id="progressRow" class="mb-5 flex items-center gap-3">
+            <div id="progress" class="grid flex-1 grid-cols-6 gap-1.5" aria-label="Progress"></div>
             <span id="progressLabel" class="text-xs font-semibold text-slate-500">Step 1 of 6</span>
           </div>
-          <div id="progress" class="mb-5 grid grid-cols-6 gap-2" aria-label="Progress"></div>
           <form id="leadForm" novalidate>
             <section class="step" data-step="1"></section>
             <section class="step hidden" data-step="2"></section>
@@ -59,10 +70,10 @@
           </form>
         </main>
 
-        <footer class="sticky bottom-0 z-20 border-t border-blue-100 bg-white/95 backdrop-blur px-4 py-3">
+        <footer class="sticky bottom-0 z-20 bg-white/92 backdrop-blur px-4 pt-3 pb-[calc(24px+env(safe-area-inset-bottom))]">
           <p id="hint" class="mb-2 min-h-[20px] text-xs font-semibold text-slate-500" aria-live="polite"></p>
           <div class="grid grid-cols-3 gap-2">
-            <button id="backBtn" type="button" class="btn btn-light col-span-1 rounded-3 border border-slate-200 py-3 font-semibold text-slate-600 invisible">Back</button>
+            <button id="backBtn" type="button" class="btn btn-light col-span-1 rounded-3 border border-slate-300 py-3 font-semibold text-slate-700 invisible">Back</button>
             <button id="nextBtn" type="button" class="cta btn col-span-2 rounded-3 py-3 font-bold text-white" style="background:#2f6bff" disabled>Next</button>
           </div>
         </footer>
@@ -102,8 +113,9 @@
     const form = document.getElementById("leadForm");
     const panels = Array.from(document.querySelectorAll(".step"));
     const progress = document.getElementById("progress");
+    const landingScreen = document.getElementById("landingScreen");
+    const startBtn = document.getElementById("startBtn");
     const progressLabel = document.getElementById("progressLabel");
-    const timerText = document.querySelector("#timerBadge span");
     const hint = document.getElementById("hint");
     const backBtn = document.getElementById("backBtn");
     const nextBtn = document.getElementById("nextBtn");
@@ -112,8 +124,7 @@
     const resetBtn = document.getElementById("resetBtn");
     const toastHost = document.getElementById("toastHost");
 
-    let timer = 60;
-    let timerHandle = null;
+    let hasStarted = false;
     const MAX_RECORD_SECONDS = 30;
     let recorder = null;
     let recorderChunks = [];
@@ -131,13 +142,12 @@
     renderProgress();
     renderAllSteps();
     bindGlobalEvents();
-    tickTimer();
-    timerHandle = setInterval(tickTimer, 1000);
     updateUI();
+    showLanding();
     attemptQueueSync(false);
 
     function renderProgress(){
-      progress.innerHTML = Array.from({length:STEPS},(_,i)=>`<span data-p="${i+1}" class="h-2 rounded-full ${i===0?"bg-swift":"bg-slate-200"}"></span>`).join("");
+      progress.innerHTML = Array.from({length:STEPS},(_,i)=>`<span data-p="${i+1}" class="h-1.5 rounded-full ${i===0?"bg-swift":"bg-slate-200"}"></span>`).join("");
     }
 
     function cardInput(type,name,value,label,extra=""){
@@ -178,8 +188,36 @@
       });
 
       resetBtn.addEventListener("click",resetFlow);
+      if(startBtn){
+        startBtn.addEventListener("click", startWizard);
+      }
+      document.addEventListener("keydown", (e)=>{
+        if(hasStarted) return;
+        if(e.key==="Enter"){
+          e.preventDefault();
+          startWizard();
+        }
+      });
       window.addEventListener("online",()=>{ showToast("Back online. Syncing saved responses..."); attemptQueueSync(true); });
       window.addEventListener("offline",()=>{ showToast("You are offline. Responses will be saved locally.","warning"); });
+    }
+
+    function showLanding(){
+      hasStarted = false;
+      wizard.classList.add("hidden");
+      landingScreen.classList.remove("hidden");
+      if(startBtn) startBtn.focus({preventScroll:true});
+    }
+
+    function startWizard(){
+      if(hasStarted) return;
+      hasStarted = true;
+      landingScreen.classList.add("hidden");
+      wizard.classList.remove("hidden");
+      updateUI();
+      gsap.fromTo(wizard,{opacity:0,y:16},{opacity:1,y:0,duration:.26,ease:"power2.out"});
+      const first = panel(state.currentStep)?.querySelector("input,textarea,button");
+      if(first) first.focus({preventScroll:true});
     }
 
     function bindStepEvents(){
@@ -704,7 +742,6 @@
         resolveRecordingFinalize = null;
       }
       recordingFinalizePromise = Promise.resolve();
-      timer = 60;
       form.reset();
       const preview = document.getElementById("voicePreview");
       const micWave = document.getElementById("micWave");
@@ -735,11 +772,10 @@
       ["name","orgName","email","mobile"].forEach(id=>setErr(id,""));
       showHint("",false);
       success.classList.add("hidden");
-      wizard.classList.remove("hidden");
       panels.forEach((p,i)=>p.classList.toggle("hidden",i!==0));
       updateUI();
-      tickTimer();
-      gsap.fromTo(panel(1),{opacity:0,y:10},{opacity:1,y:0,duration:.24,ease:"power2.out"});
+      showLanding();
+      gsap.fromTo(landingScreen,{opacity:0,y:10},{opacity:1,y:0,duration:.24,ease:"power2.out"});
     }
 
     function syncDetails(){
@@ -777,12 +813,6 @@
     }
 
     function shake(){ gsap.fromTo(panel(state.currentStep),{x:0},{x:6,yoyo:true,repeat:3,duration:.05,ease:"power1.inOut"}); }
-
-    function tickTimer(){
-      const m = Math.floor(timer/60), s = String(timer%60).padStart(2,"0");
-      timerText.textContent = `${m}:${s} Min`;
-      if(timer>0) timer -= 1;
-    }
 
     function showToast(message,variant){
       const cls = variant==="warning" ? "alert-warning" : "alert-dark";
