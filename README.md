@@ -9,7 +9,7 @@ It is fully static, deployed via GitHub Pages, and built entirely using CDN-base
 ## 🌐 Live Deployment
 
 Hosted on **GitHub Pages**  
-No build tools, no server setup, zero-cost deployment.
+No build tools. No server setup. Zero-cost deployment.
 
 ---
 
@@ -25,8 +25,8 @@ No build tools, no server setup, zero-cost deployment.
 
 ### APIs & Integrations
 - Google Apps Script (Web App endpoint)
-- Google Sheets API (via Apps Script)
-- Google Drive API (for audio storage)
+- Google Sheets (Database layer)
+- Google Drive (Audio storage)
 
 ---
 
@@ -44,7 +44,7 @@ No build tools, no server setup, zero-cost deployment.
 - Automatic Drive upload
 
 ### 📊 Automated Google Sheets Database
-- Form data is pushed to Google Sheets via Apps Script Web App
+- Form data pushed to Google Sheets via Apps Script Web App
 - Each submission creates a new row
 - Audio Drive link automatically appended to corresponding entry
 
@@ -53,10 +53,22 @@ No build tools, no server setup, zero-cost deployment.
 - Public/shareable Drive URL generated
 - Link mapped to the respective sheet row
 
-### 🎨 Smooth UI Animations
-- GSAP-powered transitions
-- Interactive form effects
-- Improved user engagement
+### 🌐 Offline & Network Failure Handling (Advanced Reliability)
+
+Swiftchat Leads is built to handle unstable or intermittent internet connectivity.
+
+- Detects network status using `navigator.onLine`
+- If user goes offline while filling the form:
+  - Form data is saved locally (LocalStorage / IndexedDB)
+  - Audio blob is temporarily stored in browser memory
+- If user closes the tab during offline mode:
+  - Data persists locally
+- When internet connectivity is restored:
+  - On reopening the form, pending submissions are automatically detected
+  - Data and audio are uploaded to Google Drive & Sheets
+  - Local cache is cleared after successful upload
+
+This ensures **zero data loss during field data collection**.
 
 ---
 
@@ -66,6 +78,8 @@ No build tools, no server setup, zero-cost deployment.
 User Browser
     ↓
 HTML Form + Audio Recorder (JS)
+    ↓
+Offline Handling Layer (LocalStorage / IndexedDB)
     ↓
 Google Apps Script Web Endpoint
     ↓
@@ -85,7 +99,7 @@ Swiftchat_leads/
 ├── index.html          # Main application file
 ├── script.js           # Form logic, audio handling, API calls
 ├── style.css (optional)
-└── assets/             # Icons or static resources (if any)
+└── assets/             # Icons or static resources
 ```
 
 ---
@@ -106,7 +120,7 @@ cd Swiftchat_leads
 1. Go to https://script.google.com
 2. Create a new project
 3. Connect it to a Google Sheet
-4. Add:
+4. Implement:
    - Drive file upload logic
    - Sheet append row logic
 5. Deploy as:
@@ -144,34 +158,36 @@ Your app will be live.
 
 ---
 
-## 🔐 Permissions Required
+## 🔐 Browser Permissions Required
 
 - Microphone access (for audio recording)
-- Google Drive access (handled via Apps Script)
-- Google Sheets write access
+- Internet access (for submission sync)
+- Google Drive & Sheets access (handled via Apps Script)
 
 ---
 
 ## 📌 Use Cases
 
 - Field lead collection
-- Education enrollment forms
-- Government data collection drives
+- Education enrollment drives
+- Government surveys
 - Tele-calling lead capture
-- Survey forms with voice evidence
+- Survey forms with voice validation
+- Rural/offline-first data collection environments
 
 ---
 
-## 🚀 Advantages
+## 🚀 Key Advantages
 
 - Zero backend hosting cost
+- Offline-first reliability
 - No server management
 - Fully browser-based
-- Simple to customize
+- Easily customizable
 - Scalable via Google infrastructure
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the MIT License.
+MIT License
