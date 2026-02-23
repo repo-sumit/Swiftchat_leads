@@ -9,6 +9,12 @@ function doPost(e) {
     const raw = (e && e.postData && e.postData.contents) ? e.postData.contents : "{}";
     const payload = JSON.parse(raw);
 
+    if (payload && payload.__ping === true) {
+      // Permission check: open the sheet to validate access without writing a row.
+      getSheet_();
+      return json_({ ok: true, mode: "ping" });
+    }
+
     const sheet = getSheet_();
     ensureHeader_(sheet);
 

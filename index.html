@@ -39,20 +39,24 @@
 
       <section id="landingScreen" class="flex flex-1 items-center px-4 py-8">
         <div class="w-full rounded-3xl border border-blue-100 bg-white p-4 shadow-sm">
-          <div class="flex items-center justify-between gap-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <img src="https://i.ibb.co/zT6pKqKg/swiftchat-logo.jpg" alt="SwiftChat icon" class="h-12 w-12 shrink-0 rounded-2xl object-cover">
-              <div>
-                <h2 class="mb-1 text-2xl font-extrabold text-ink">Let's get started</h2>
-                <p class="mb-0 text-sm text-slate-500">Tell us what you're looking to build with SwiftChat.</p>
-              </div>
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex min-w-0 items-center gap-3">
+            <img src="https://i.ibb.co/zT6pKqKg/swiftchat-logo.jpg" alt="SwiftChat icon" class="h-12 w-12 shrink-0 rounded-2xl object-cover">
+            <div>
+              <h2 class="mb-1 text-2xl font-extrabold text-ink">Let's get started</h2>
+              <p class="mb-0 text-sm text-slate-500">Tell us what you're looking to build with SwiftChat.</p>
             </div>
-            <button id="startBtn" type="button" class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-swift text-lg text-white shadow-sm" aria-label="Start form">
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
           </div>
+          <button id="startBtn" type="button" class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-swift text-lg text-white shadow-sm" aria-label="Start form">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
-      </section>
+        <div class="mt-4 flex items-center justify-between gap-3">
+          <p class="mb-0 text-xs font-semibold text-slate-500">Need to verify setup?</p>
+          <button id="testBtn" type="button" class="btn btn-light rounded-3 border border-slate-200 px-3 py-2 text-xs fw-semibold">Test connection</button>
+        </div>
+      </div>
+    </section>
 
       <div id="wizard" class="hidden flex flex-col flex-1 min-h-0">
         <main class="flex-1 overflow-y-auto px-4 pt-4 pb-32">
@@ -123,6 +127,7 @@
     const success = document.getElementById("success");
     const resetBtn = document.getElementById("resetBtn");
     const toastHost = document.getElementById("toastHost");
+    const testBtn = document.getElementById("testBtn");
 
     let hasStarted = false;
     const MAX_RECORD_SECONDS = 30;
@@ -190,6 +195,9 @@
       resetBtn.addEventListener("click",resetFlow);
       if(startBtn){
         startBtn.addEventListener("click", startWizard);
+      }
+      if(testBtn){
+        testBtn.addEventListener("click", testConnection);
       }
       document.addEventListener("keydown", (e)=>{
         if(hasStarted) return;
@@ -680,6 +688,38 @@
         userAgent:navigator.userAgent,
         source:SOURCE_TAG
       };
+    }
+
+    function makePingPayload(){
+      return {
+        __ping:true,
+        timestamp:new Date().toISOString(),
+        userAgent:navigator.userAgent,
+        source:SOURCE_TAG
+      };
+    }
+
+    async function testConnection(){
+      if(!isAppsScriptConfigured()){
+        showToast("Apps Script URL not configured.", "warning");
+        return;
+      }
+      if(testBtn) testBtn.disabled = true;
+      showToast("Testing connection...");
+      try{
+        await send(makePingPayload());
+        showToast("Connection OK.");
+      }catch(err){
+        const msg = String(err && err.message || err || "");
+        const lower = msg.toLowerCase();
+        if(lower.includes("permission") || lower.includes("access the requested document")){
+          showToast("Sheet access missing for Apps Script account.", "warning");
+        }else{
+          showToast(msg ? `Test failed: ${msg}` : "Test failed.", "warning");
+        }
+      }finally{
+        if(testBtn) testBtn.disabled = false;
+      }
     }
 
     async function send(payload){
