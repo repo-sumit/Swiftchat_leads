@@ -123,7 +123,6 @@
     const success = document.getElementById("success");
     const resetBtn = document.getElementById("resetBtn");
     const toastHost = document.getElementById("toastHost");
-    const testBtn = document.getElementById("testBtn");
 
     let hasStarted = false;
     const MAX_RECORD_SECONDS = 30;
@@ -191,9 +190,6 @@
       resetBtn.addEventListener("click",resetFlow);
       if(startBtn){
         startBtn.addEventListener("click", startWizard);
-      }
-      if(testBtn){
-        testBtn.addEventListener("click", testConnection);
       }
       document.addEventListener("keydown", (e)=>{
         if(hasStarted) return;
@@ -684,38 +680,6 @@
         userAgent:navigator.userAgent,
         source:SOURCE_TAG
       };
-    }
-
-    function makePingPayload(){
-      return {
-        __ping:true,
-        timestamp:new Date().toISOString(),
-        userAgent:navigator.userAgent,
-        source:SOURCE_TAG
-      };
-    }
-
-    async function testConnection(){
-      if(!isAppsScriptConfigured()){
-        showToast("Apps Script URL not configured.", "warning");
-        return;
-      }
-      if(testBtn) testBtn.disabled = true;
-      showToast("Testing connection...");
-      try{
-        await send(makePingPayload());
-        showToast("Connection OK.");
-      }catch(err){
-        const msg = String(err && err.message || err || "");
-        const lower = msg.toLowerCase();
-        if(lower.includes("permission") || lower.includes("access the requested document")){
-          showToast("Sheet access missing for Apps Script account.", "warning");
-        }else{
-          showToast(msg ? `Test failed: ${msg}` : "Test failed.", "warning");
-        }
-      }finally{
-        if(testBtn) testBtn.disabled = false;
-      }
     }
 
     async function send(payload){
