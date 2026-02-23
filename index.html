@@ -630,13 +630,19 @@
         showSuccess();
       }catch(err){
         console.error("Submit failed:", err);
-        enqueue(payload);
-        if(String(err && err.message || "").includes("not configured")){
-          showHint("Apps Script URL not configured. Update APPS_SCRIPT_URL.",true);
+        const msg = String(err && err.message || err || "");
+        const lower = msg.toLowerCase();
+        if(lower.includes("not configured")){
+          showHint("Apps Script URL not configured. Update APPS_SCRIPT_URL.", true);
+          showToast("Apps Script URL not configured.", "warning");
+        }else if(lower.includes("permission") || lower.includes("access the requested document")){
+          showHint("Apps Script cannot access the spreadsheet. Share the sheet with the deployment account.", true);
+          showToast("Sheet access missing for Apps Script account.", "warning");
         }else{
-          showHint("Network/server issue. Saved offline and will auto-sync.",true);
+          enqueue(payload);
+          showHint("Network/server issue. Saved offline and will auto-sync.", true);
+          showToast("Saved offline - will sync when network is back.", "warning");
         }
-        showToast("Saved offline - will sync when network is back.","warning");
       }finally{
         state.isSubmitting = false;
         updateUI();
@@ -685,8 +691,19 @@
         cache:"no-store",
         redirect:"follow"
       });
-      if(!res.ok) throw new Error("Submission failed: " + res.status);
-      return res;
+      let body = null;
+      try{
+        body = await res.clone().json();
+      }catch{
+        body = null;
+      }
+      if(!res.ok){
+        throw new Error(body && body.error ? body.error : ("Submission failed: " + res.status));
+      }
+      if(body && body.ok === false){
+        throw new Error(body.error || "Submission failed");
+      }
+      return body || { ok:true };
     }
 
     function getQueue(){
